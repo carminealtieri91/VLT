@@ -17,7 +17,7 @@ class gestoreProfilo {
     public $database;
     
     public function __construct() {
-        include 'database.php';
+        include_once 'database.php';
         $this->database = new database();
     }
     
@@ -33,8 +33,7 @@ class gestoreProfilo {
             }
             else{
                 session_start();
-                $utente = $this->recuperaProfilo($email);
-                $_SESSION['utenteLoggato'] = serialize($utente);
+                $_SESSION['utenteLoggato'] = $email;
                 return true;
             }
         }

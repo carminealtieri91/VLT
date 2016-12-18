@@ -2,12 +2,10 @@
 
 session_start();
 
-include 'gestoreProfilo.php';
-include 'model/Utente.php';
+include_once 'gestoreProfilo.php';
 
 $gestoreProfilo = new gestoreProfilo();
-$utente = unserialize($_SESSION['utenteLoggato']);
-$email = $utente->getEmail();
+$email = $_SESSION['utenteLoggato'];
 if($gestoreProfilo->cancellaProfilo($email)){
     header("Location: index.php");
 }

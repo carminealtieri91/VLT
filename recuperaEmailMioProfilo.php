@@ -4,6 +4,11 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
+<?php 
+    session_start();
+    $email = $_SESSION['utenteLoggato'];
+?>
+
 <html>
     <head>
         <title>Visualizza Profilo</title>
@@ -30,7 +35,7 @@ and open the template in the editor.
 					}
 				}
 				xhr.onreadystatechange=gestoreRichiesta;
-                                var variabile = "stefdibenedetto88@gmail.com";
+                                var variabile = "<?php echo $email; ?>";
                                 url="recuperaDatiProfilo.php?Email="+variabile;
 				xhr.open("GET", url, true);
 				xhr.send();

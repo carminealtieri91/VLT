@@ -8,10 +8,12 @@
 
 session_start();
 
-include 'model/Utente.php';
+include_once 'gestoreProfilo.php';
+include_once 'model/Utente.php';
 
-$utente = unserialize($_SESSION['utenteLoggato']);
-$email = $utente->getEmail();
+$gestoreProfilo = new gestoreProfilo();
+$email = $_SESSION['utenteLoggato'];
+$utente = $gestoreProfilo->recuperaProfilo($email);
 $pass = $utente->getPassword();
 $username = $utente->getUsername();
 header("Content-type: text/xml");

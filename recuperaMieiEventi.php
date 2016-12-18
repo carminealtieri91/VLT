@@ -8,11 +8,9 @@
 
 session_start();
 include_once 'visualizzatoreEvento.php';
-include_once 'model/Utente.php';
-$utente = unserialize($_SESSION['utenteLoggato']);
-$email = $utente->getEmail();
+$email = $_SESSION['utenteLoggato'];
 $visualizzatoreEvento = new visualizzatoreEvento();
-$ris = $visualizzatoreEvento->visualizza($email);
+$ris = $visualizzatoreEvento->mostraMieiEventi($email);
 
 ?>
 
@@ -31,15 +29,18 @@ $ris = $visualizzatoreEvento->visualizza($email);
 <?php 
     while ($riga = mysql_fetch_array($ris)){
         echo "<div class='riga'>";
-        echo "<span class='cella'> <a href='visualizzaEvento.php?id=$riga[Id]'>$riga[TitoloArtistaAlbum]</a></span>";
+        echo "<span class='cella'> <a href='visualizzaEvento.php?id=$riga[Chiave]'>$riga[TitoloArtistaAlbum]</a></span>";
         echo "<span class='cella'> $riga[Localita] </span>";
-        echo "<span class='cella'> $riga[Data] </span>";
-        echo "<span class='cella'> $riga[Orario] </span>";
+        $data = date_create($riga[Data]);
+        $data = date_format($data,'d/m/Y');
+        echo "<span class='cella'> $data </span>";
+        $orario = substr($riga[Orario], 0, 5);
+        echo "<span class='cella'> $orario </span>";
         echo "<span class='cella'> $riga[Ingresso] </span>";
         echo "<span class='cella'> Test Prenotati </span>";
-        echo "<span class='cella'> <a href='stampaPrenotati.php?id=$riga[Id]'> Stampa Prenotati </a></span>";
-        echo "<span class='cella'> <a href='modificaEvento.php?id=$riga[Id]'> Modifica </a></span>";
-        echo "<span class='cella'> <a href='controllaDatiEliminaEvento.php?id=$riga[Id]' onclick='return conferma();'> Elimina </a></span>";
+        echo "<span class='cella'> <a href='stampaPrenotati.php?id=$riga[Chiave]'> Stampa Prenotati </a></span>";
+        echo "<span class='cella'> <a href='modificaEvento.php?id=$riga[Chiave]'> Modifica </a></span>";
+        echo "<span class='cella'> <a href='controllaDatiEliminaEvento.php?id=$riga[Chiave]' onclick='return confermaEliminaEvento();'> Elimina </a></span>";
         echo "</div>";
     }
 ?>

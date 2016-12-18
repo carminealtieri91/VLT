@@ -6,9 +6,7 @@ and open the template in the editor.
 -->
 <?php
     session_start();
-    include_once 'model/Utente.php';
-    $utente = unserialize($_SESSION['utenteLoggato']);
-    $email = $utente->getEmail();
+    $email = $_SESSION['utenteLoggato'];
 ?>
 
 <html>
@@ -203,10 +201,14 @@ and open the template in the editor.
                         </div>
                         <div class="riga"> 
                             <span class="cella"><label for="data"> Data dell'evento (gg/mm/aaaa) * </label></span> 
-                            <span class="cella"><input id="data" name="data" maxlength="10" size="10" type="text" required=""></span>  <!-- correggere data minima di inserimento -->
+                            <span class="cella">
+                                <input id="data" name="giorno" maxlength="2" size="2" type="text" required="">
+                                <input id="data" name="mese" maxlength="2" size="2" type="text" required="">
+                                <input id="data" name="anno" maxlength="4" size="4" type="text" required="">
+                            </span>  <!-- correggere data minima di inserimento -->
 			</div>
                         <div class="riga"> 
-                            <span class="cella"><label for="orario"> Orario dell'evento (hh/mm) * </label></span> 
+                            <span class="cella"><label for="orario"> Orario dell'evento (hh:mm) * </label></span> 
                             <span class="cella"><input id="orario" name="orario" maxlength="8" size="8" accesskey="h" required="" type="text"></span> 
 			</div>
                         <div class="riga">

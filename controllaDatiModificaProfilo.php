@@ -8,18 +8,15 @@
 
 session_start();
 
-include 'gestoreProfilo.php';
-include_once 'model/Utente.php';
+include_once 'gestoreProfilo.php';
 
 $newEmail = $_POST['email'];
 $newUsername = $_POST['username'];
 $newPassword = $_POST['password'];
-$utente = unserialize($_SESSION['utenteLoggato']);
-$email = $utente->getEmail();
+$email = $_SESSION['utenteLoggato'];
 $gestoreProfilo = new gestoreProfilo();
 if($gestoreProfilo->modificaProfilo($email, $newEmail, $newUsername, $newPassword)){
-    $newUtente = $gestoreProfilo->recuperaProfilo($email);
-    $_SESSION['utenteLoggato'] = serialize($newUtente);
+    $_SESSION['utenteLoggato'] = $newEmail;
     header("Location: modificaProfilo.php");
 }
 else {

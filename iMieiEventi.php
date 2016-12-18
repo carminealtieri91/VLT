@@ -37,10 +37,13 @@ and open the template in the editor.
 					var risposta=xhr.responseText;
 					document.getElementById("tavolaEventi").innerHTML=risposta;
 				}
-            }
-           	function conferma(){
-            	return confirm("Vuoi eliminare l'evento?");
-            }
+                    }
+                        function conferma(){
+                            return confirm("Vuoi eliminare l'evento?");
+                        }
+                        function confermaEliminaEvento(){
+                            return confirm("Sei sicuro di voler eliminare l'evento?");
+                        }
 	</script>
         <style type="text/css">
          

@@ -16,7 +16,8 @@ if(isset($_POST['ingresso']) && $_POST['ingresso'] == 'gratuito'){
 else if(isset($_POST['ingresso']) && $_POST['ingresso'] == 'costo'){
     $ingresso = $_POST['prezzo'];
 }
-$evento = new Evento($_POST['titolo'], $_POST['info'], null, $ingresso, $_POST['localita'], $_POST['provincia'], $_POST['data'], $_POST['orario'], $_POST['posti'], $_POST['telefono'], $_POST['email']);
+$data = $_POST['giorno'].'-'.$_POST['mese'].'-'.$_POST['anno'];
+$evento = new Evento($_POST['titolo'], $_POST['info'], null, $ingresso, $_POST['localita'], $_POST['provincia'], $data, $_POST['orario'], $_POST['posti'], $_POST['telefono'], $_POST['email']);
 if($gestoreEvento->inserisciEvento($evento)){
     header("Location: iMieiEventi.php");
     exit;

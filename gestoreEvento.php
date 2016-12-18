@@ -33,7 +33,7 @@ class gestoreEvento {
         $em = $evento->getEmailOrganizzatore();
         $numEventi = $this->recuperaNumEventi($em);
         $id = $numEventi+1;
-        $query = "INSERT INTO Evento (TitoloArtistaAlbum, InfoDettagliate, Ingresso, Localita, Orario, Provincia, Data, PostiDisponibili, Telefono, EmailOrganizzatore, Id) VALUES ('$titVinile', '$info', '$ingresso', '$localita', '$orario', '$provincia', '$data', '$posti', '$tel', '$em', '$id')";
+        $query = "INSERT INTO Evento (TitoloArtistaAlbum, InfoDettagliate, Ingresso, Localita, Orario, Provincia, Data, PostiDisponibili, Telefono, EmailOrganizzatore, Id) VALUES ('$titVinile', '$info', '$ingresso', '$localita', '$orario', '$provincia', STR_TO_DATE('$data','%d-%m-%Y'), '$posti', '$tel', '$em', '$id')";
         if($this->database->queryDB("my_vinyllisteningtogether", $query)){
             $query = "UPDATE Profilo SET NumeroEventi='$id' WHERE Email = '$em' ";
             $this->database->queryDB("my_vinyllisteningtogether", $query);
@@ -50,10 +50,8 @@ class gestoreEvento {
     
     public function eliminaEvento($id){
         session_start();
-        include_once 'model/Utente.php';
-        $utente = unserialize($_SESSION['utenteLoggato']);
-        $email = $utente->getEmail();
-        $query = "DELETE FROM Evento WHERE EmailOrganizzatore = '$email' AND Id = '$id' ";
+        $email = $_SESSION['utenteLoggato'];
+        $query = "DELETE FROM Evento WHERE EmailOrganizzatore = '$email' AND Chiave = '$id' ";
         if($this->database->queryDB("my_vinyllisteningtogether", $query)){
             $numEventi = $this->recuperaNumEventi($email);
             $numEventi--;
