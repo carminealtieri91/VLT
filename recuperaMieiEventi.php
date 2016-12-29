@@ -8,8 +8,10 @@
 
 session_start();
 include_once 'visualizzatoreEvento.php';
+include_once 'gestorePrenotazione.php';
 $email = $_SESSION['utenteLoggato'];
 $visualizzatoreEvento = new visualizzatoreEvento();
+$gestorePrenotazione = new gestorePrenotazione();
 $ris = $visualizzatoreEvento->mostraMieiEventi($email);
 
 ?>
@@ -37,7 +39,7 @@ $ris = $visualizzatoreEvento->mostraMieiEventi($email);
         $orario = substr($riga[Orario], 0, 5);
         echo "<span class='cella'> $orario </span>";
         echo "<span class='cella'> $riga[Ingresso] </span>";
-        echo "<span class='cella'> Test Prenotati </span>";
+        echo "<span class='cella'>".mysql_num_rows($gestorePrenotazione->visualizzaPrenotati($riga[Chiave]))."</span>";
         echo "<span class='cella'> <a href='stampaPrenotati.php?id=$riga[Chiave]'> Stampa Prenotati </a></span>";
         echo "<span class='cella'> <a href='modificaEvento.php?id=$riga[Chiave]'> Modifica </a></span>";
         echo "<span class='cella'> <a href='controllaDatiEliminaEvento.php?id=$riga[Chiave]' onclick='return confermaEliminaEvento();'> Elimina </a></span>";

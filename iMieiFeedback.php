@@ -14,48 +14,11 @@ and open the template in the editor.
 
 <html>
     <head>
-        <title>I miei eventi</title>
-    </head>
-    <body onload="caricaEventi()">
-        <script type="text/javascript">
-                        var xhr;
-			function caricaEventi(){
-				try{
-					// Firefox, Opera 8.0+, Safari
-					xhr= new XMLHttpRequest();
-				}catch(e){
-					// Internet Explorer
-					try{
-						xhr=new ActiveXObject("Msxml2.XMLHTTP");
-					}catch(e){
-							try{
-								xhr=new ActiveXObject("Microsoft.XMLHTTP");
-						}catch(e){
-							alert("Your browser does not support AJAX!");
-							return false;
-						}
-					}
-				}
-				xhr.onreadystatechange=gestoreRichiesta;
-				xhr.open("GET", "recuperaMieiEventi.php", true);
-				xhr.send();
-			}
-			function gestoreRichiesta(){
-                            if(xhr.readyState==4 & xhr.status==200){
-					var risposta=xhr.responseText;
-					document.getElementById("tavolaEventi").innerHTML=risposta;
-				}
-                    }
-                        function conferma(){
-                            return confirm("Vuoi eliminare l'evento?");
-                        }
-                        function confermaEliminaEvento(){
-                            return confirm("Sei sicuro di voler eliminare l'evento?");
-                        }
-	</script>
-        <style type="text/css">
-         
-          #content{  
+        <meta charset="UTF-8">
+        <title>I Miei Feedback</title>
+        <style>
+        
+        	#content{  
               margin-top: 10px; 
               background:transparent;
               width:100%; 
@@ -89,9 +52,9 @@ and open the template in the editor.
                 
 			}
 			
-			#tavolaAnnunci{
+			#tavolaFeedback{
 				display:table; 
-				width:100%; 
+				width:60%; 
 				height:50%; 
 				margin-left:auto;
 				margin-right:auto;
@@ -122,7 +85,7 @@ and open the template in the editor.
 			}
 			a:visited {
 				font-weight: bold;
-				color: black;
+				color: darkred;
 				text-decoration: none;
 			}
 			a:hover {
@@ -142,19 +105,70 @@ and open the template in the editor.
 			}
 			button{
 				border-radius:30px; 
-				border-color:lime; 
+				border-color:brown; 
 				background-color:white;
 			}
-	</style>
+           
+           
+		</style>
+        <script type="text/javascript">
+			var xhr;
+			function caricaMediaFeedback(){
+				try{
+					// Firefox, Opera 8.0+, Safari
+					xhr= new XMLHttpRequest();
+				}catch(e){
+					// Internet Explorer
+					try{
+						xhr=new ActiveXObject("Msxml2.XMLHTTP");
+					}catch(e){
+							try{
+								xhr=new ActiveXObject("Microsoft.XMLHTTP");
+						}catch(e){
+							alert("Your browser does not support AJAX!");
+							return false;
+						}
+					}
+				}
+				xhr.onreadystatechange=gestoreRecuperaMediaFeedback;
+				xhr.open("GET", "recuperaMediaFeedback.php", true);
+				xhr.send();
+			}
+			function gestoreRecuperaMediaFeedback(){
+            	if(xhr.readyState==4 & xhr.status==200){
+					var risposta=xhr.responseText;
+					document.getElementById("mediaFeedback").innerHTML=risposta;
+                    caricaFeedback();
+				}
+            }
+            
+           function caricaFeedback(){
+           		
+           		xhr.onreadystatechange=gestoreRecuperaFeedback;
+				xhr.open("GET", "recuperaFeedback.php", true);
+                
+				xhr.send();
+                
+           }
+           function gestoreRecuperaFeedback(){
+           		if(xhr.readyState==4 & xhr.status==200){
+					var risposta=xhr.responseText;
+					document.getElementById("tavolaFeedback").innerHTML=risposta;
+                    
+				}
+           }
+		</script>
+    </head>
+    <body onload="caricaMediaFeedback()">
         <?php
             include 'view/headerAreaRiservata.php';
         ?>
         <div id="content">
-            <h1> I miei eventi </h1> 
-            <h2>
-            	<a href="inserisciEvento.php">  Inserisci un nuovo evento </a>
-            </h2>
-            <div id="tavolaEventi"></div>
-	</div>
+            <h1>I miei feedback</h1>
+            <div id="contenitore">
+                <div id="mediaFeedback" style="margin:0 auto; height: 30%; width: 15%; text-align: center;"></div>
+                <div id="tavolaFeedback"></div>
+            </div>
+        </div>
     </body>
 </html>

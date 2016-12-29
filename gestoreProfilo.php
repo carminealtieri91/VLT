@@ -77,14 +77,19 @@ class gestoreProfilo {
         return $utente;
     }
     
+    function recuperaProfiloTramiteUsername($username){
+        include_once 'model/Utente.php';
+        $query = "SELECT * FROM Profilo WHERE Username = '$username' ";
+        $ris = $this->database->queryDB("my_vinyllisteningtogether", $query);
+        return $ris;
+    }
+    
     public function modificaProfilo($email, $newEmail, $newUsername, $newPassword){
         $query = "UPDATE Profilo SET Email='$newEmail', Username='$newUsername', Password='$newPassword' WHERE Email = '$email' ";
         if($this->database->queryDB("my_vinyllisteningtogether", $query)){
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
     
 }

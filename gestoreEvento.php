@@ -16,7 +16,7 @@ class gestoreEvento {
     public $database;
     
     public function __construct() {
-        include 'database.php';
+        include_once 'database.php';
         $this->database = new database();
     }
     
@@ -25,6 +25,7 @@ class gestoreEvento {
         $info = $evento->getDettagliEvento();
         $ingresso = $evento->getIngresso();
         $localita = $evento->getLocalita();
+        $regione = $evento ->getRegione();
         $orario = $evento->getOrario();
         $provincia = $evento->getProvincia();
         $data = $evento->getData();
@@ -33,7 +34,7 @@ class gestoreEvento {
         $em = $evento->getEmailOrganizzatore();
         $numEventi = $this->recuperaNumEventi($em);
         $id = $numEventi+1;
-        $query = "INSERT INTO Evento (TitoloArtistaAlbum, InfoDettagliate, Ingresso, Localita, Orario, Provincia, Data, PostiDisponibili, Telefono, EmailOrganizzatore, Id) VALUES ('$titVinile', '$info', '$ingresso', '$localita', '$orario', '$provincia', STR_TO_DATE('$data','%d-%m-%Y'), '$posti', '$tel', '$em', '$id')";
+        $query = "INSERT INTO Evento (TitoloArtistaAlbum, InfoDettagliate, Ingresso, Localita, Regione, Orario, Provincia, Data, PostiDisponibili, Telefono, EmailOrganizzatore, Id) VALUES ('$titVinile', '$info', '$ingresso', '$localita', '$regione', '$orario', '$provincia', STR_TO_DATE('$data','%d-%m-%Y'), '$posti', '$tel', '$em', '$id')";
         if($this->database->queryDB("my_vinyllisteningtogether", $query)){
             $query = "UPDATE Profilo SET NumeroEventi='$id' WHERE Email = '$em' ";
             $this->database->queryDB("my_vinyllisteningtogether", $query);
@@ -44,8 +45,21 @@ class gestoreEvento {
         }
     }
     
-    public function modificaEvento($evento){
-        
+    public function modificaEvento(Evento $evento, $id){
+        $titVinile = $evento->getTitoloVinile();
+        $info = $evento->getDettagliEvento();
+        $ingresso = $evento->getIngresso();
+        $localita = $evento->getLocalita();
+        $regione = $evento ->getRegione();
+        $orario = $evento->getOrario();
+        $provincia = $evento->getProvincia();
+        $data = $evento->getData();
+        $tel = $evento->getNumTelefono();
+        $query = "UPDATE Evento SET TitoloArtistaAlbum='$titVinile', InfoDettagliate='$info', Ingresso='$ingresso', Localita='$localita', Regione='$regione', Orario='$orario', Provincia='$provincia', Data=STR_TO_DATE('$data','%d-%m-%Y'), Telefono='$tel' WHERE Chiave='$id' ";
+        if($this->database->queryDB("my_vinyllisteningtogether", $query)){
+            return true;
+        }
+        return false;
     }
     
     public function eliminaEvento($id){
@@ -69,6 +83,14 @@ class gestoreEvento {
         $ris = $this->database->queryDB("my_vinyllisteningtogether", $query);
         $riga = mysql_fetch_row($ris);
         return $riga[0];
+    }
+    
+    public function aggiornaPosti($newPosti, $id){
+        $query = "UPDATE Evento SET PostiDisponibili='$newPosti' WHERE Chiave = '$id' ";
+        if($this->database->queryDB("my_vinyllisteningtogether", $query)){
+            return true;
+        }
+        return false;
     }
     
 }

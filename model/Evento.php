@@ -17,6 +17,7 @@ class Evento {
     private $immagineVinile;
     private $ingresso;
     private $localita;
+    private $regione;
     private $provincia;
     private $data;
     private $orario;
@@ -24,12 +25,13 @@ class Evento {
     private $numTelefono;
     private $emailOrganizzatore;
     
-    public function __construct($titoloVinile, $dettagliEvento, $immagineVinile, $ingresso, $localita, $provincia, $data, $orario, $postiDisponibili, $numTelefono, $emailOrganizzatore) {
+    public function __construct($titoloVinile, $dettagliEvento, $immagineVinile, $ingresso, $localita, $regione, $provincia, $data, $orario, $postiDisponibili, $numTelefono, $emailOrganizzatore) {
         $this->titoloVinile = $titoloVinile;
         $this->dettagliEvento = $dettagliEvento;
         $this->immagineVinile = $immagineVinile;
         $this->ingresso = $ingresso;
         $this->localita = $localita;
+        $this->regione = $regione;
         $this->provincia = $provincia;
         $this->data = $data;
         $this->orario = $orario;
@@ -124,6 +126,14 @@ class Evento {
 
     function setEmailOrganizzatore($emailOrganizzatore) {
         $this->emailOrganizzatore = $emailOrganizzatore;
+    }
+
+    function getRegione() {
+        return $this->regione;
+    }
+
+    function setRegione($regione) {
+        $this->regione = $regione;
     }
 
 
