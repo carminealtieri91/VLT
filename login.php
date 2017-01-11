@@ -102,7 +102,7 @@ and open the template in the editor.
 			return false;
                     }
                 }
-                //cerchiamo @
+                //cerco @
                 atPos = oggModulo.email.value.indexOf("@",1);
                 if (atPos == -1){
                     alert("Devi inserire una email");
@@ -200,43 +200,39 @@ and open the template in the editor.
         <div id="content">
             <div id="tavola2">
                 <form method="POST" action="controllaDatiLogin.php" onsubmit="return validaModulo(this);">
-			<fieldset>
-				<legend>Login</legend>
-				<div class="righe">
-					<span class="celle">
-						<label for="mail">
-							Email:
-						</label> 
-					</span>
-					<span class="celle">
-						<input id="mail" name="email" tabindex="1" required="" autofocus="" type="text"> 
-					</span>
-				</div>
+                    <fieldset>
+			<legend>Login</legend>
+			<div class="righe">
+                            <span class="celle">
+				<label for="mail">Email:</label> 
+                            </span>
+                            <span class="celle">
+				<input id="mail" name="email" tabindex="1" required="" autofocus="" type="text"> 
+                            </span>
+			</div>
 
-				<div class="righe">
-					<span class="celle">
-						<label for="pwd">
-							Password:
-						</label>
-					</span> 
-					<span class="celle">
-						<input id="pwd" name="pwd" tabindex="2" required="" type="password">
-					</span>
-				</div>
-				<div class="righe">
-					<span class="celle"> 
-						<a href="recuperoCredenziali.php">Hai dimenticato la password?</a>
-					</span>
-				</div>
-				<div class="righe">
-					<span class="celle">
-						<input id="sub" value="Accedi" tabindex="3" type="submit">
-					</span>
-					<span class="celle">
-						<input id="ann" value="Annulla" tabindex="4" type="reset">
-					</span>
-				</div>
-			</fieldset>
+			<div class="righe">
+                            <span class="celle">
+				<label for="pwd">Password:</label>
+                            </span> 
+                            <span class="celle">
+				<input id="pwd" name="pwd" tabindex="2" required="" type="password">
+                            </span>
+			</div>
+			<div class="righe">
+                            <span class="celle"> 
+				<a href="recuperoCredenziali.php">Hai dimenticato la password?</a>
+                            </span>
+			</div>
+			<div class="righe">
+                            <span class="celle">
+				<input id="sub" value="Accedi" tabindex="3" type="submit">
+                            </span>
+                            <span class="celle">
+				<input id="ann" value="Annulla" tabindex="4" type="reset">
+                            </span>
+                        </div>
+                    </fieldset>
 		</form>
             </div>
         </div>

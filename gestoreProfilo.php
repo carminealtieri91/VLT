@@ -28,7 +28,6 @@ class gestoreProfilo {
         if($riga){
             $cod = $riga["Email"];
             if($cod == NULL){
-                    /*DA AGGIUSTARE, BISOGNA FARE IL REDIRECT ALLA PAGINA DI ERRORE*/
                 return false;
             }
             else{
