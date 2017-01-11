@@ -118,7 +118,7 @@ and open the template in the editor.
         <div id="content">
             <div id="fenomeno">
 		<p class="f1"> 
-                    Benvenuto nel sito!.
+                    Benvenuto nel sito!
                 </p>
 		<p>Per prenotarti agli eventi disponibili nel sito VLT <br> (accedi a <a href="registrazione.php">REGISTRATI</a>).</p>
 		<p>Ulteriori info sul fenomeno VLT <a href="fenomeno.php">FENOMENO</a></p>
@@ -153,6 +153,6 @@ and open the template in the editor.
             <div id="disco" style="display:inline">
                 <p> <img src="Immagini/vinyl-record-animation.gif" width="280px" height="280px"> </p>
             </div>
-</div>
+        </div>
     </body>
 </html>

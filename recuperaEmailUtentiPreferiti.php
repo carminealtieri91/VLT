@@ -152,7 +152,7 @@ and open the template in the editor.
             include_once 'view/headerAreaRiservata.php';
         ?>
         <div class="navbar">
-            <a class="navlink" onclick="visualizzaFormFeedback()">Dai un feedback</a> 
+            <a class="navlink" onclick="visualizzaFormFeedback()" style="color: white; font-weight: bold;">Dai un feedback</a>
 	</div>
         <div id="contenitore">
             <div id="infoProfilo" style="margin:0 auto; height: 15%; width: 40%; text-align: center;"></div>
