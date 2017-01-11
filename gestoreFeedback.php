@@ -20,13 +20,30 @@ class gestoreFeedback {
         $this->database = new database();
     }
     
-    public function inserisciFeedback($invia, $riceve, $votazione){
-        if(!$this->giaInserito($invia, $riceve)){
-            $query = "INSERT INTO Feedback (Votante, Votato, Votazione) VALUES ('$invia', '$riceve', '$votazione')";
+    public function inserisciFeedback(Feedback $fb){
+        $votante = $fb->getVotante();
+        $votato = $fb->getVotato();
+        $votazione = $fb->getVotazione();
+        if(!$this->giaInserito($votante, $votato)){
+            $query = "INSERT INTO Feedback (Votante, Votato, Votazione) VALUES ('$votante', '$votato', '$votazione')";
             if($this->database->queryDB("my_vinyllisteningtogether", $query)){
-                $this->aggiornaMediaFeedbackUtente($riceve);
+                $this->aggiornaMediaFeedbackUtente($votato);
                 return true;
             }   
+        }
+        else{
+            if($this->modificaFeedback($fb)){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    public function modificaFeedback(Feedback $fb){
+        $query = "UPDATE Feedback SET Votazione='".$fb->getVotazione()."' WHERE Votante='".$fb->getVotante()."' AND Votato='".$fb->getVotato()."'";
+        if($this->database->queryDB("my_vinyllisteningtogether", $query)){
+            $this->aggiornaMediaFeedbackUtente($fb->getVotato());
+            return true;
         }
         return false;
     }
@@ -37,8 +54,8 @@ class gestoreFeedback {
         return $ris;
     }
     
-    public function giaInserito($invia, $riceve){
-        $query = "SELECT * FROM Feedback WHERE Votante='$invia' AND Votato='$riceve' ";
+    public function giaInserito($votante, $votato){
+        $query = "SELECT * FROM Feedback WHERE Votante='$votante' AND Votato='$votato' ";
         $ris = $this->database->queryDB("my_vinyllisteningtogether", $query);
         if(mysql_fetch_row($ris)){
             return true;
@@ -46,14 +63,14 @@ class gestoreFeedback {
         return false;
     }
     
-    public function aggiornaMediaFeedbackUtente($riceve){
-        $ris = $this->visualizzaFeedback($riceve);
+    public function aggiornaMediaFeedbackUtente($votato){
+        $ris = $this->visualizzaFeedback($votato);
         $numFeedback = mysql_num_rows($ris);
         while($riga = mysql_fetch_assoc($ris)){
             $n += $riga['Votazione'];
         }
         $media = (($n/$numFeedback)*100)/5;
-        $query = "UPDATE Profilo SET MediaFeedback='$media' WHERE Email = '$riceve' ";
+        $query = "UPDATE Profilo SET MediaFeedback='$media' WHERE Email = '$votato' ";
         if($this->database->queryDB("my_vinyllisteningtogether", $query)){
             return true;
         }

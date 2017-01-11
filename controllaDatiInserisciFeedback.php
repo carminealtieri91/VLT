@@ -8,11 +8,10 @@
 
 session_start();
 include_once 'gestoreFeedback.php';
+include_once 'model/Feedback.php';
 $gestoreFeedback = new gestoreFeedback();
-$inviaVotazione = $_SESSION['utenteLoggato'];
-$riceveVotazione = $_GET['utente'];
-$voto = $_POST['voto'];
-if($gestoreFeedback->inserisciFeedback($inviaVotazione, $riceveVotazione, $voto)){
+$fb = new Feedback($_SESSION['utenteLoggato'], $_GET['utente'], $_POST['voto']);
+if($gestoreFeedback->inserisciFeedback($fb)){
     header("Location: utentiPreferiti.php");
     exit;
 }
