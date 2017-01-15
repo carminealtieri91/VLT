@@ -91,8 +91,7 @@ and open the template in the editor.
                                 <p>
                                     Ogni utente può decidere di mettere a disposizione un proprio disco in vinile per condividere l'ascolto con
                                     altre persone, condivisione che a discrezione dell'organizzatore può essere gratuita o sotto un piccolo compenso
-                                    economico (solitamente compreso tra 50 cent e 2 euro), eventuale pagamento che avviene all'ingresso del posto in cui
-                                    si tiene l'evento.
+                                    economico (solitamente compreso tra 50 cent e 2 euro), eventuale pagamento che avviene in loco.
                                 </p>
                                 <p>
                                     Ogni utente iscritto al portale può decidere di organizzare un evento o decidere di partecipare a quelli
