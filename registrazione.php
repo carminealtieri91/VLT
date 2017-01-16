@@ -240,7 +240,7 @@ and open the template in the editor.
 					<div class="riga"> 
 						<span class="cella"> 
 							<input id="terminiUso" name="terminiUso" tabindex="6" accesskey="t" required="" type="checkbox"> 
-							Accetto TERMINI E CONDIZIONI D'USO
+                                                        Accetto <a href="condizioni.php">TERMINI E CONDIZIONI D'USO</a>
 						</span> 
 					</div>
 					<div class="riga"> 
