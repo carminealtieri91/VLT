@@ -60,6 +60,10 @@ class gestoreProfilo {
         $query = "DELETE FROM Profilo WHERE Email = '$email' ";
         $ris = $this->database->queryDB("my_vinyllisteningtogether", $query);
         if($ris){
+            //cancello tutti gli eventi relativi a questo profilo
+            $query = "DELETE FROM Evento WHERE EmailOrganizzatore = '$email' ";
+            $this->database->queryDB("my_vinyllisteningtogether", $query);
+            //termino la sessione dell'utente
             session_unset();
             session_destroy();
             return true;

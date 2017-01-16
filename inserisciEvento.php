@@ -89,6 +89,12 @@ and open the template in the editor.
 				document.getElementById("provincia").innerHTML=risposta;
                             }
                         }
+                        function validateTel(){
+                            if(isNaN(document.getElementById("telefono").value)){
+                                document.getElementById("telefono").value="";
+                                alert("Numero di telefono deve contenere solo cifre.");
+                            }
+                        }
             
           	
         </script>
@@ -237,7 +243,7 @@ and open the template in the editor.
 			</div>
                         <div class="riga"> 
                             <span class="cella"><label for="telefono"> Numero di telefono </label></span> 
-                            <span class="cella"><input id="telefono" name="telefono" maxlength="15" tabindex="10" accesskey="t" type="tel"></span> 
+                            <span class="cella"><input id="telefono" name="telefono" maxlength="15" tabindex="10" accesskey="t" type="text" onchange="validateTel()"></span> 
 			</div>
                         <div class="riga"> 
                             <span class="cella"><label for="email"> Email </label></span> 
