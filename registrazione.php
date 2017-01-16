@@ -231,14 +231,6 @@ and open the template in the editor.
 					</div>
 					<div class="riga"> 
 						<span class="cella"> 
-							<label for="foto"> Carica foto profilo </label>
-						</span> 
-						<span class="cella"> 
-							<input id="foto" name="foto" tabindex="5" accesskey="p" type="file">
-						</span> 
-					</div>
-					<div class="riga"> 
-						<span class="cella"> 
 							<input id="terminiUso" name="terminiUso" tabindex="6" accesskey="t" required="" type="checkbox"> 
                                                         Accetto <a href="condizioni.php">TERMINI E CONDIZIONI D'USO</a>
 						</span> 

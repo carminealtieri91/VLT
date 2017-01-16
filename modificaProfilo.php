@@ -263,13 +263,7 @@ and open the template in the editor.
 						</span> 
 					</div>
 					<div class="riga"> 
-                    	<span class="cella">
-                        	<label for="foto"> Modifica foto profilo </label>
-                        </span>
-                    	<span class="cella">
-                            <img src="Immagini/user.png" width="100px" height="100px">                        
-						   <input id="foto" name="foto" tabindex="5" accesskey="p" onclick="immagineCambiata=true;" type="file">											
-						</span> 
+                    	
                         
 					</div>
 					
